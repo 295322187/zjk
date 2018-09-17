@@ -5,7 +5,7 @@
 
 	<artifactId>common-manager</artifactId>
 
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 
 	<name>common-manager</name>
 	<description>common-manager</description>
