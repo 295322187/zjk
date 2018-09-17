@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>common-manager</artifactId>
+
+	<packaging>jar</packaging>
+
+	<name>common-manager</name>
+	<description>common-manager</description>
+
+	<parent>
+		<groupId>com.zjk.module</groupId>
+		<artifactId>common-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<com.zjk.module.version>1.0.0</com.zjk.module.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- common -->
+			<dependency>
+				<groupId>com.zjk.module</groupId>
+				<artifactId>common</artifactId>
+				<version>${com.zjk.module.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+</project>
