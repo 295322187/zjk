@@ -23,6 +23,12 @@
 			<groupId>com.zjk.module</groupId>
 			<artifactId>common-authorization</artifactId>
 		</dependency>
+
+		<!-- spring cloud eureka client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
