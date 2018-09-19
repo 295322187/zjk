@@ -5,7 +5,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${eureka.instance.ip-address}:${server.port}
-    status-page-url: http://${eureka.instance.ip-address}:${server.port}${server.context-path}/swagger-ui.html
+    status-page-url: http://${eureka.instance.ip-address}:${server.port}${server.servlet.context-path}/swagger-ui.html
 
 
 
