@@ -6,6 +6,6 @@ spring:
     active: dev
 
 server:
-  port: 8730
+  port: 8761
   servlet:
     context-path:
