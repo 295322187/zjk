@@ -3,6 +3,7 @@ package com.zjk.module.common.configuration;
 import com.zjk.module.common.annotation.CreateApiDocs;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
@@ -20,12 +21,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@ComponentScan(
+		basePackages = {"com.zjk.module.common"}
+)
 @EnableSwagger2
 public class CommonConfiguration {
 
-	@Value("${com.sbm.module.config.swagger2.api.url:https://github.com/295322187/zjk}")
+	@Value("${com.zjk.module.common.config.swagger2.api.url:https://github.com/295322187/zjk}")
 	private String apiUrl;
-	@Value("${com.sbm.module.config.swagger2.api.description:zjk的公共组件}")
+	@Value("${com.zjk.module.common.config.swagger2.api.description:zjk的公共组件}")
 	private String description;
 
 	// 忽略SSL
