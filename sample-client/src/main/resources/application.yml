@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sample-client
+  profiles:
+    include: common
+    active: dev
+
+server:
+  port: 8771
+  servlet:
+    context-path:
