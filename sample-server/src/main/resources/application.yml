@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sample-server
+  profiles:
+    include: common
+    active: dev
+
+server:
+  port: 8730
+  servlet:
+    context-path:

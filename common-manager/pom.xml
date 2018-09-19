@@ -29,6 +29,13 @@
 				<artifactId>common</artifactId>
 				<version>${com.zjk.module.version}</version>
 			</dependency>
+
+			<!-- common authorization -->
+			<dependency>
+				<groupId>com.zjk.module</groupId>
+				<artifactId>common-authorization</artifactId>
+				<version>${com.zjk.module.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
