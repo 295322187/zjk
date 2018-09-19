@@ -1,0 +1,10 @@
+eureka:
+  instance:
+    #实例ip
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  server:
+    #开发时关闭自我保护
+    enable-self-preservation: false
