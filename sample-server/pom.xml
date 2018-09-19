@@ -18,7 +18,7 @@
 	</parent>
 
 	<dependencies>
-		<!-- common authorization -->
+		<!-- common authorization server -->
 		<dependency>
 			<groupId>com.zjk.module</groupId>
 			<artifactId>common-authorization-server</artifactId>
