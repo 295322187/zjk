@@ -30,10 +30,17 @@
 				<version>${com.zjk.module.version}</version>
 			</dependency>
 
-			<!-- common authorization -->
+			<!-- common authorization server -->
 			<dependency>
 				<groupId>com.zjk.module</groupId>
-				<artifactId>common-authorization</artifactId>
+				<artifactId>common-authorization-server</artifactId>
+				<version>${com.zjk.module.version}</version>
+			</dependency>
+
+			<!-- common authorization client -->
+			<dependency>
+				<groupId>com.zjk.module</groupId>
+				<artifactId>common-authorization-client</artifactId>
 				<version>${com.zjk.module.version}</version>
 			</dependency>
 		</dependencies>

@@ -3,12 +3,12 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>common-authorization</artifactId>
+	<artifactId>common-authorization-server</artifactId>
 
 	<packaging>jar</packaging>
 
-	<name>common-authorization</name>
-	<description>common-authorization</description>
+	<name>common-authorization-server</name>
+	<description>common-authorization-server</description>
 
 	<parent>
 		<groupId>com.zjk.module</groupId>
