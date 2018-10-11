@@ -3,12 +3,12 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>sample-server</artifactId>
+	<artifactId>sample-eureka-server</artifactId>
 
 	<packaging>jar</packaging>
 
-	<name>sample-server</name>
-	<description>sample-server</description>
+	<name>sample-eureka-server</name>
+	<description>sample-eureka-server</description>
 
 	<parent>
 		<groupId>com.zjk.module</groupId>
@@ -18,16 +18,16 @@
 	</parent>
 
 	<dependencies>
-		<!-- common authorization server -->
+		<!-- common -->
 		<dependency>
 			<groupId>com.zjk.module</groupId>
-			<artifactId>common-authorization-server</artifactId>
+			<artifactId>common</artifactId>
 		</dependency>
 
-		<!-- spring cloud eureka client -->
+		<!-- spring cloud eureka server -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sample-eureka-server
+  profiles:
+    include: common
+    active: dev
+
+server:
+  port: 8761
+  servlet:
+    context-path:
