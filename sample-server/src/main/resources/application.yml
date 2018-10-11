@@ -6,6 +6,6 @@ spring:
     active: dev, eureka_dev, db_ms_dev, redis_dev
 
 server:
-  port: 8761
+  port: 9999
   servlet:
     context-path:
