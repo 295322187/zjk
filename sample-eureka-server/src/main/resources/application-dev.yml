@@ -1,4 +1,7 @@
 eureka:
+  server:
+    #开发时关闭自我保护
+    enable-self-preservation: false
   instance:
     #实例ip
     ip-address: 127.0.0.1
