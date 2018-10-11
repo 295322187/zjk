@@ -1,0 +1,53 @@
+package com.zjk.module.common.authorization.client.exception;
+
+
+import com.zjk.module.common.base.exception.IBusinessCode;
+
+public enum VerificationCodeErrorCode implements IBusinessCode {
+
+	VC0001("VC0001", "验证码不存在或已失效:{0}", "验证码不存在或已失效"),
+	VC0002("VC0002", "验证码不正确:{0}", "验证码不正确"),
+	VC0003("VC0003", "关键词不匹配:{0}", "关键词不匹配"),
+	VC0004("VC0004", "验证类型不正确", "验证类型不正确");
+
+
+	private String clazz;
+
+	private String code;
+
+	private String message;
+
+	private String customerMessage;
+
+	VerificationCodeErrorCode(String code, String message, String customerMessage) {
+		this.clazz = this.getClass().getName();
+		this.code = code;
+		this.message = message;
+		this.customerMessage = customerMessage;
+	}
+
+	@Override
+	public String getClazz() {
+		return clazz;
+	}
+
+	@Override
+	public String getCode() {
+		return code;
+	}
+
+	@Override
+	public String getMessage() {
+		return message;
+	}
+
+	@Override
+	public String getCustomerMessage() {
+		return customerMessage;
+	}
+
+	@Override
+	public Object getData() {
+		return null;
+	}
+}
