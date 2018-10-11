@@ -18,11 +18,22 @@
 	</parent>
 
 	<dependencies>
-		<!-- common -->
+		<!-- common data -->
 		<dependency>
 			<groupId>com.zjk.module</groupId>
-			<artifactId>common</artifactId>
+			<artifactId>common-data</artifactId>
+		</dependency>
+
+		<!-- common redis -->
+		<dependency>
+			<groupId>com.zjk.module</groupId>
+			<artifactId>common-redis</artifactId>
+		</dependency>
+
+		<!-- common authorization client -->
+		<dependency>
+			<groupId>com.zjk.module</groupId>
+			<artifactId>common-authorization-client</artifactId>
 		</dependency>
 	</dependencies>
-
 </project>
