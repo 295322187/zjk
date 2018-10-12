@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/serialcode")
+@RequestMapping("/common/authorization/api/serialcode")
 public class SerialCodeController extends BaseController {
 
 	@Autowired

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value = "common-authorization")
-@RequestMapping("/api/jsonwebtoken")
+@FeignClient(value = "${common.authorization.application.name:common-authorization}")
+@RequestMapping("/common/authorization/api/jsonwebtoken")
 public interface IJSONWebTokenClient {
 
 	@RequestMapping(value = "/token", method = RequestMethod.POST)

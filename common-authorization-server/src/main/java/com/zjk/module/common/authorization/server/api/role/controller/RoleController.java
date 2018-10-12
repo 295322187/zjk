@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/role")
+@RequestMapping("/common/authorization/api/role")
 public class RoleController extends BaseController {
 
 	@Autowired

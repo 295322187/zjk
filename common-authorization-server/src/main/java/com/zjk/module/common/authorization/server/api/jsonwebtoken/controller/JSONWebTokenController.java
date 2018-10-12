@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/jsonwebtoken")
+@RequestMapping("/common/authorization/api/jsonwebtoken")
 public class JSONWebTokenController extends BaseController {
 
 	@Autowired

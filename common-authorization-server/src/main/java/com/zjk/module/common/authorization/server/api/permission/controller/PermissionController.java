@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/permission")
+@RequestMapping("/common/authorization/api/permission")
 public class PermissionController extends BaseController {
 
 	@Autowired

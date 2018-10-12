@@ -19,7 +19,7 @@ import java.util.List;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/userrole")
+@RequestMapping("/common/authorization/api/userrole")
 public class UserRoleController extends BaseController {
 
 	@Autowired

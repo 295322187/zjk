@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@FeignClient(value = "common-authorization")
-@RequestMapping("/api/passport")
+@FeignClient(value = "${common.authorization.application.name:common-authorization}")
+@RequestMapping("/common/authorization/api/passport")
 public interface IPassportClient {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

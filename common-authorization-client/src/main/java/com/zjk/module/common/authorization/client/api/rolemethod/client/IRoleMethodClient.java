@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-@FeignClient(value = "common-authorization")
-@RequestMapping("/api/rolemethod")
+@FeignClient(value = "${common.authorization.application.name:common-authorization}")
+@RequestMapping("/common/authorization/api/rolemethod")
 public interface IRoleMethodClient {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

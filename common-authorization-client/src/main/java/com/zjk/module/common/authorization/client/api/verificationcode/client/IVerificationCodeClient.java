@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(value = "common-authorization")
-@RequestMapping("/api/verificationcode")
+@FeignClient(value = "${common.authorization.application.name:common-authorization}")
+@RequestMapping("/common/authorization/api/verificationcode")
 public interface IVerificationCodeClient {
 
 	@RequestMapping(value = "/generate", method = RequestMethod.POST)

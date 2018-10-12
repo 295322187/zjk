@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(value = "common-authorization")
-@RequestMapping("/api/permission")
+@FeignClient(value = "${common.authorization.application.name:common-authorization}")
+@RequestMapping("/common/authorization/api/permission")
 public interface IPermissionClient {
 
 	@RequestMapping(value = "/valid", method = RequestMethod.POST)

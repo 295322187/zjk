@@ -20,7 +20,7 @@ import java.util.List;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/method")
+@RequestMapping("/common/authorization/api/method")
 public class MethodController extends BaseController {
 
 	@Autowired

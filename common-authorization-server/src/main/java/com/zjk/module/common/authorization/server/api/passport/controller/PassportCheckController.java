@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/passport/check")
+@RequestMapping("/common/authorization/api/passport/check")
 public class PassportCheckController extends BaseController {
 
 	@Autowired

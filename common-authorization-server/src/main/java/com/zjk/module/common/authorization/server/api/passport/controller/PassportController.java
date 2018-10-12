@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/passport")
+@RequestMapping("/common/authorization/api/passport")
 public class PassportController extends BaseController {
 
 	@Autowired

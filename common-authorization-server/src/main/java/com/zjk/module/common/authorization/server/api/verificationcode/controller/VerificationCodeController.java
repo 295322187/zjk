@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/verificationcode")
+@RequestMapping("/common/authorization/api/verificationcode")
 public class VerificationCodeController extends BaseController {
 
 	@Autowired

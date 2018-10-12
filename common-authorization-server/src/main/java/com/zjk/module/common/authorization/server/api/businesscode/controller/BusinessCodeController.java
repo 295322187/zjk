@@ -20,7 +20,7 @@ import java.util.List;
 @Validated
 @CreateApiDocs
 @RestController
-@RequestMapping("/api/businesscode")
+@RequestMapping("/common/authorization/api/businesscode")
 public class BusinessCodeController extends BaseController {
 
 	@Autowired

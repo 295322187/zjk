@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "common-authorization")
-@RequestMapping("/api/userrole")
+@FeignClient(value = "${common.authorization.application.name:common-authorization}")
+@RequestMapping("/common/authorization/api/userrole")
 public interface IUserRoleClient {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "common-authorization")
-@RequestMapping("/api/serialcode")
+@FeignClient(value = "${common.authorization.application.name:common-authorization}")
+@RequestMapping("/common/authorization/api/serialcode")
 public interface ISerialCodeClient {
 
 	@RequestMapping(value = "/next/{serialGroup}", method = RequestMethod.GET)

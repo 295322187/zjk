@@ -9,3 +9,8 @@ server:
   port: 9998
   servlet:
     context-path:
+
+common:
+  authorization:
+    application:
+      name: sample-server
