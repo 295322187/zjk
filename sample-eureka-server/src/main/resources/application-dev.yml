@@ -5,8 +5,3 @@ eureka:
   instance:
     #实例ip
     ip-address: 127.0.0.1
-
-sync:
-  cron:
-    method: 0 0 0 * * ?
-    businesscode: 0 0 0 * * ?
