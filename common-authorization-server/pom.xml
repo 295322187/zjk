@@ -35,5 +35,11 @@
 			<groupId>com.zjk.module</groupId>
 			<artifactId>common-authorization-client</artifactId>
 		</dependency>
+
+		<!-- json web token -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+		</dependency>
 	</dependencies>
 </project>
