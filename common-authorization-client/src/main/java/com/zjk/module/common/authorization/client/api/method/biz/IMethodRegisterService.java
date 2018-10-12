@@ -1,7 +1,5 @@
 package com.zjk.module.common.authorization.client.api.method.biz;
 
-
-
 import com.zjk.module.common.authorization.client.api.method.domain.Method;
 
 import java.util.List;
