@@ -1,7 +1,7 @@
 package com.zjk.module.common.authorization.server.base.user.biz.impl;
 
 
-import com.zjk.module.common.authorization.client.exception.AuthorizationSerialCode;
+import com.zjk.module.common.authorization.client.serialcode.AuthorizationSerialCode;
 import com.zjk.module.common.authorization.server.api.serialcode.biz.ISerialCodeService;
 import com.zjk.module.common.authorization.server.base.user.biz.ITCUserService;
 import com.zjk.module.common.authorization.server.base.user.domain.TCUser;

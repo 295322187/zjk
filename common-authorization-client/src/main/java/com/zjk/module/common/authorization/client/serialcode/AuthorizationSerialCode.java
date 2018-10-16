@@ -1,4 +1,4 @@
-package com.zjk.module.common.authorization.client.exception;
+package com.zjk.module.common.authorization.client.serialcode;
 
 
 import com.zjk.module.common.authorization.client.api.serialcode.constant.ISerialCode;
