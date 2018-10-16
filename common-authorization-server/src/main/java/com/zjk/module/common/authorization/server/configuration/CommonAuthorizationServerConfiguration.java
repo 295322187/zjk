@@ -9,9 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@ComponentScan(
-		basePackages = {"com.zjk.module.common.authorization.server"}
-)
+@ComponentScan(basePackages = {"com.zjk.module.common.authorization.server"})
 @EnableJpaRepositories(basePackages = {"com.zjk.module.common.authorization.server"})
 @EntityScan(basePackages = {"com.zjk.module.common.authorization.server"})
 @EnableCommonDataConfiguration

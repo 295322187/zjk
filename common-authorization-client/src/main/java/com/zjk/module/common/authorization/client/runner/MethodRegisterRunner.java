@@ -1,4 +1,4 @@
-package com.zjk.module.common.authorization.server.runner;
+package com.zjk.module.common.authorization.client.runner;
 
 import com.alibaba.fastjson.JSON;
 import com.zjk.module.common.base.biz.impl.CommonServiceImpl;

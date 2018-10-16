@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.lang.annotation.Annotation;
 import java.util.Map;
 
 @Component
@@ -69,8 +70,18 @@ public class SpringContextProvider implements ApplicationContextAware {
 	 * @param <T>
 	 * @return
 	 */
-	public <T> Map<String, T> getBeans(Class<T> clazz) {
+	public <T> Map<String, T> getBeansOfType(Class<T> clazz) {
 		return getApplicationContext().getBeansOfType(clazz);
+	}
+
+	/**
+	 * 通过annotation获取指定的Bean集合
+	 *
+	 * @param clazz
+	 * @return
+	 */
+	public Map<String, Object> getBeansWithAnnotation(Class<? extends Annotation> clazz) {
+		return getApplicationContext().getBeansWithAnnotation(clazz);
 	}
 
 }
