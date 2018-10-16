@@ -1,6 +1,6 @@
 package com.zjk.module.common.authorization.server.configuration;
 
-import com.zjk.module.common.base.annotation.EnableCommonBaseConfiguration;
+import com.zjk.module.common.authorization.client.annotation.EnableCommonAuthorizationClientConfiguration;
 import com.zjk.module.common.data.annotation.EnableCommonDataConfiguration;
 import com.zjk.module.common.redis.annotation.EnableCommonRedisConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -14,10 +14,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 )
 @EnableJpaRepositories(basePackages = {"com.zjk.module.common.authorization.server"})
 @EntityScan(basePackages = {"com.zjk.module.common.authorization.server"})
-@EnableCommonBaseConfiguration
 @EnableCommonDataConfiguration
 @EnableCommonRedisConfiguration
+@EnableCommonAuthorizationClientConfiguration
 public class CommonAuthorizationServerConfiguration {
-
 
 }
