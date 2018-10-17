@@ -10,7 +10,8 @@ public interface IMethodRegisterService {
 	 * 注册方法
 	 *
 	 * @param vos
+	 * @return
 	 */
-	void register(List<Method> vos);
+	List<Method> register(List<Method> vos);
 
 }

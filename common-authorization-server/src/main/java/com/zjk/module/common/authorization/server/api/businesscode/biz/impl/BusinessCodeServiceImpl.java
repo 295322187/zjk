@@ -44,7 +44,7 @@ public class BusinessCodeServiceImpl extends CommonServiceImpl implements IBusin
 
 	@Override
 	@Transactional
-	public void register(List<BusinessCode> vos) {
+	public List<BusinessCode> register(List<BusinessCode> vos) {
 		vos.forEach(e -> {
 			TCBusinessCode po = businessCodeService.findOneByBusinessClazzAndBusinessCode(e.getBusinessClazz(), e.getBusinessCode());
 			if (null == po) {
@@ -77,6 +77,7 @@ public class BusinessCodeServiceImpl extends CommonServiceImpl implements IBusin
 				}
 			});
 		});
+		return vos;
 	}
 
 	private BusinessCode convert(TCBusinessCode e) {

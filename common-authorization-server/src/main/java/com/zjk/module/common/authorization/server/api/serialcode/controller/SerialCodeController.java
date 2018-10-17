@@ -35,8 +35,7 @@ public class SerialCodeController extends BaseController {
 	@ApiOperation(value = "注册序列号", notes = "注册序列号")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public JsonContainer<List<SerialCode>> register(@RequestBody List<SerialCode> vos) {
-		registerService.register(vos);
-		return setSuccessMessage(vos);
+		return setSuccessMessage(registerService.register(vos));
 	}
 
 }

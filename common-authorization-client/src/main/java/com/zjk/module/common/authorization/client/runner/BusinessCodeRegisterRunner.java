@@ -1,7 +1,8 @@
 package com.zjk.module.common.authorization.client.runner;
 
-import com.alibaba.fastjson.JSON;
 import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.authorization.client.api.businesscode.biz.IBusinessCodeRegisterService;
+import com.zjk.module.common.authorization.client.api.businesscode.client.IBusinessCodeClient;
 import com.zjk.module.common.authorization.client.api.businesscode.constant.BusinessCodeLangConstant;
 import com.zjk.module.common.authorization.client.api.businesscode.domain.BusinessCode;
 import com.zjk.module.common.authorization.client.api.businesscode.domain.BusinessCodeLang;
@@ -20,15 +21,17 @@ import java.util.List;
 @Order(2)
 public class BusinessCodeRegisterRunner extends RunnerServiceImpl implements ApplicationRunner {
 
-
 	@Autowired
 	private RegisterRunnerHandler handler;
+	@Autowired
+	private IBusinessCodeClient client;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		List<BusinessCode> vos = handler.process(runnerHandler(EnableRegisterRunner.class, e -> handler.handle(e)),
 				IBusinessCode.class, e -> convert(e));
-		System.out.println(JSON.toJSONString(vos));
+		process(IBusinessCodeRegisterService.class, e -> log(e.register(vos)),
+				IBusinessCodeClient.class, e -> log(checkJsonContainer(e.register(vos))));
 	}
 
 

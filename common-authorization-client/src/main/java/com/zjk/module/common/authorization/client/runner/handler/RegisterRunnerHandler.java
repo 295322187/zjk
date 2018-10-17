@@ -1,6 +1,7 @@
 package com.zjk.module.common.authorization.client.runner.handler;
 
 import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.base.biz.impl.RunnerServiceImpl;
 import org.reflections.Reflections;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 @Component
-public class RegisterRunnerHandler {
+public class RegisterRunnerHandler extends RunnerServiceImpl {
 
 	/**
 	 * 处理annotation
@@ -80,5 +81,6 @@ public class RegisterRunnerHandler {
 		}
 		return vos;
 	}
+
 
 }

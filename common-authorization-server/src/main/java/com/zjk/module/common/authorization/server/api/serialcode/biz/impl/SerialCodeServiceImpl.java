@@ -68,7 +68,7 @@ public class SerialCodeServiceImpl implements ISerialCodeService, ISerialCodeReg
 
 	@Override
 	@Transactional
-	public void register(List<SerialCode> vos) {
+	public List<SerialCode> register(List<SerialCode> vos) {
 		vos.forEach(e -> {
 			SerialCode vo;
 			String valuer = (String) redisService.get(RedisConstant.getKey(SerialCode.class, e.getSerialGroup()));
@@ -81,5 +81,6 @@ public class SerialCodeServiceImpl implements ISerialCodeService, ISerialCodeReg
 			// 注册到redis，不设过期时间
 			redisService.set(RedisConstant.getKey(SerialCode.class, vo.getSerialGroup()), JSON.toJSONString(vo));
 		});
+		return vos;
 	}
 }

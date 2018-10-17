@@ -46,7 +46,7 @@ public class MethodServiceImpl extends CommonServiceImpl implements IMethodRegis
 
 	@Override
 	@Transactional
-	public void register(List<Method> vos) {
+	public List<Method> register(List<Method> vos) {
 		vos.forEach(e -> {
 			TCMethod po = service.findOneByApplicationNameAndMethodAndAndPattern(e.getApplicationName(), e.getMethod(), e.getPattern());
 			if (null == po) {
@@ -71,6 +71,7 @@ public class MethodServiceImpl extends CommonServiceImpl implements IMethodRegis
 			po.setRemark(e.getRemark());
 			service.save(po);
 		});
+		return vos;
 	}
 
 	private Method convert(TCMethod e) {

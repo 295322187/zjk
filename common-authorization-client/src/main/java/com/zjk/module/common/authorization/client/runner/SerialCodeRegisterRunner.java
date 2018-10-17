@@ -1,7 +1,8 @@
 package com.zjk.module.common.authorization.client.runner;
 
-import com.alibaba.fastjson.JSON;
 import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.authorization.client.api.serialcode.biz.ISerialCodeRegisterService;
+import com.zjk.module.common.authorization.client.api.serialcode.client.ISerialCodeClient;
 import com.zjk.module.common.authorization.client.api.serialcode.constant.ISerialCode;
 import com.zjk.module.common.authorization.client.api.serialcode.domain.SerialCode;
 import com.zjk.module.common.authorization.client.runner.handler.RegisterRunnerHandler;
@@ -25,9 +26,9 @@ public class SerialCodeRegisterRunner extends RunnerServiceImpl implements Appli
 	public void run(ApplicationArguments args) throws Exception {
 		List<SerialCode> vos = handler.process(runnerHandler(EnableRegisterRunner.class, e -> handler.handle(e)),
 				ISerialCode.class, e -> convert(e));
-		System.out.println(JSON.toJSONString(vos));
+		process(ISerialCodeRegisterService.class, e -> log(e.register(vos)),
+				ISerialCodeClient.class, e -> log(checkJsonContainer(e.register(vos))));
 	}
-
 
 	private SerialCode convert(ISerialCode serialCode) {
 		return new SerialCode(serialCode.getSerialGroup(), serialCode.getRemark());

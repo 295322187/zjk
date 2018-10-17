@@ -11,7 +11,8 @@ public interface ISerialCodeRegisterService {
 	 * 注册序列号
 	 *
 	 * @param vos
+	 * @return
 	 */
-	void register(List<SerialCode> vos);
+	List<SerialCode> register(List<SerialCode> vos);
 
 }

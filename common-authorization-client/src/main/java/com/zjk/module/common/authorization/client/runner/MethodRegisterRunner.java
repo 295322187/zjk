@@ -1,7 +1,8 @@
 package com.zjk.module.common.authorization.client.runner;
 
-import com.alibaba.fastjson.JSON;
 import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.authorization.client.api.method.biz.IMethodRegisterService;
+import com.zjk.module.common.authorization.client.api.method.client.IMethodClient;
 import com.zjk.module.common.authorization.client.api.method.constant.MethodConstant;
 import com.zjk.module.common.authorization.client.api.method.domain.Method;
 import com.zjk.module.common.authorization.client.exception.AuthorizationCode;
@@ -36,9 +37,8 @@ public class MethodRegisterRunner extends RunnerServiceImpl implements Applicati
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		List<Method> vos = process();
-		System.out.println(JSON.toJSONString(vos));
-
-
+		process(IMethodRegisterService.class, e -> log(e.register(vos)),
+				IMethodClient.class, e -> log(checkJsonContainer(e.register(vos))));
 	}
 
 	private List<Method> process() {

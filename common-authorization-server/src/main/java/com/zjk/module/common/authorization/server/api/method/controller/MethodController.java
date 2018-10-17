@@ -32,8 +32,7 @@ public class MethodController extends BaseController {
 	@ApiOperation(value = "注册方法", notes = "注册方法")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public JsonContainer<List<Method>> register(@RequestBody List<Method> vos) {
-		registerService.register(vos);
-		return setSuccessMessage(vos);
+		return setSuccessMessage(registerService.register(vos));
 	}
 
 	@ApiOperation(value = "分页查询", notes = "分页查询")

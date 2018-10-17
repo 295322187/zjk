@@ -32,8 +32,7 @@ public class BusinessCodeController extends BaseController {
 	@ApiOperation(value = "注册业务代码", notes = "注册业务代码")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public JsonContainer<List<BusinessCode>> register(@RequestBody List<BusinessCode> vos) {
-		registerService.register(vos);
-		return setSuccessMessage(vos);
+		return setSuccessMessage(registerService.register(vos));
 	}
 
 	@ApiOperation(value = "分页查询", notes = "分页查询")
