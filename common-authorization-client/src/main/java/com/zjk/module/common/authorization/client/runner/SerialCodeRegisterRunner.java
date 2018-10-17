@@ -23,8 +23,8 @@ public class SerialCodeRegisterRunner extends RunnerServiceImpl implements Appli
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		List<String[]> result = runnerHandler(EnableRegisterRunner.class, e -> handler.handle(e));
-		List<SerialCode> vos = handler.process(result, ISerialCode.class, e -> convert(e));
+		List<SerialCode> vos = handler.process(runnerHandler(EnableRegisterRunner.class, e -> handler.handle(e)),
+				ISerialCode.class, e -> convert(e));
 		System.out.println(JSON.toJSONString(vos));
 	}
 

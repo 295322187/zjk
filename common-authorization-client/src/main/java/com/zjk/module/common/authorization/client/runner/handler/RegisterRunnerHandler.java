@@ -37,6 +37,23 @@ public class RegisterRunnerHandler {
 	}
 
 	/**
+	 * 数组转字符串
+	 *
+	 * @param result
+	 * @return
+	 */
+	public List<String> arrayToString(List<String[]> result) {
+		List<String> basePackages = new ArrayList<>();
+		result.forEach(e -> {
+			for (String s : e) {
+				basePackages.add(s);
+			}
+		});
+		return basePackages;
+	}
+
+
+	/**
 	 * 处理实例
 	 *
 	 * @param result
@@ -47,12 +64,7 @@ public class RegisterRunnerHandler {
 	 * @return
 	 */
 	public <T, R> List<R> process(List<String[]> result, Class<T> clazz, Function<? super T, ? extends R> mapper) {
-		List<String> basePackages = new ArrayList<>();
-		result.forEach(e -> {
-			for (String s : e) {
-				basePackages.add(s);
-			}
-		});
+		List<String> basePackages = arrayToString(result);
 		List<R> vos = new ArrayList<>();
 		Reflections reflections = new Reflections(basePackages);
 		Set<Class<? extends T>> set = reflections.getSubTypesOf(clazz);
