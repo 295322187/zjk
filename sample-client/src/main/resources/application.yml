@@ -3,7 +3,7 @@ spring:
     name: sample-client
   profiles:
     include: common
-    active: dev
+    active: dev, eureka_dev
 
 server:
   port: 9998
