@@ -57,6 +57,13 @@
 				<artifactId>common-authorization-client</artifactId>
 				<version>${com.zjk.module.version}</version>
 			</dependency>
+
+			<!-- common zuul -->
+			<dependency>
+				<groupId>com.zjk.module</groupId>
+				<artifactId>common-zuul</artifactId>
+				<version>${com.zjk.module.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
