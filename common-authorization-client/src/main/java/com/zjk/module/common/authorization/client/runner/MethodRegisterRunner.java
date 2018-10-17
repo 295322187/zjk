@@ -35,6 +35,13 @@ public class MethodRegisterRunner extends RunnerServiceImpl implements Applicati
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		List<Method> vos = process();
+		System.out.println(JSON.toJSONString(vos));
+
+
+	}
+
+	private List<Method> process() {
 		List<Method> vos = new ArrayList<>();
 		List<String> basePackages = handler.arrayToString(runnerHandler(EnableRegisterRunner.class, e -> handler.handle(e)));
 		// 获取所有RequestMappingHandlerMapping 如果需要其他再添加
@@ -56,7 +63,7 @@ public class MethodRegisterRunner extends RunnerServiceImpl implements Applicati
 				vos.add(new Method(applicationName, requestMethod.toString(), pattern, MethodConstant.VALID_FLAG_1, null));
 			}
 		});
-		System.out.println(JSON.toJSONString(vos));
+		return vos;
 	}
 
 }
