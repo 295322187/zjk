@@ -13,7 +13,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @ComponentScan(basePackages = {"com.zjk.module.common.zuul"})
 @EnableZuulProxy
-@EnableFeignClients(basePackages = {"com.zjk.module.common.zuul"})
 @EnableCommonAuthorizationClientConfiguration
 public class CommonZuulConfiguration {
 
