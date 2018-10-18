@@ -1,4 +1,4 @@
-package com.zjk.module.common.authorization.client.annotation;
+package com.zjk.module.common.base.annotation;
 
 
 import org.springframework.core.annotation.AliasFor;

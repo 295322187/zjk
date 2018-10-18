@@ -1,6 +1,6 @@
 package com.zjk.module.common.authorization.client.configuration;
 
-import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.base.annotation.EnableRegisterRunner;
 import com.zjk.module.common.base.annotation.EnableCommonBaseConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;

@@ -1,7 +1,7 @@
 package com.zjk.module.common.authorization.server.configuration;
 
 import com.zjk.module.common.authorization.client.annotation.EnableCommonAuthorizationClientConfiguration;
-import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.base.annotation.EnableRegisterRunner;
 import com.zjk.module.common.data.annotation.EnableCommonDataConfiguration;
 import com.zjk.module.common.redis.annotation.EnableCommonRedisConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;

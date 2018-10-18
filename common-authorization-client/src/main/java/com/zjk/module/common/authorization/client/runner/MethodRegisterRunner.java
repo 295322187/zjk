@@ -1,6 +1,6 @@
 package com.zjk.module.common.authorization.client.runner;
 
-import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.base.annotation.EnableRegisterRunner;
 import com.zjk.module.common.authorization.client.api.method.biz.IMethodRegisterService;
 import com.zjk.module.common.authorization.client.api.method.client.IMethodClient;
 import com.zjk.module.common.authorization.client.api.method.constant.MethodConstant;

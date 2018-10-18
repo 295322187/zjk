@@ -1,6 +1,6 @@
 package com.zjk.module.common.authorization.client.runner.handler;
 
-import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.base.annotation.EnableRegisterRunner;
 import com.zjk.module.common.base.biz.impl.RunnerServiceImpl;
 import org.reflections.Reflections;
 import org.springframework.stereotype.Component;

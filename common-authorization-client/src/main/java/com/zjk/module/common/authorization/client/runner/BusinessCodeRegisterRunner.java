@@ -1,6 +1,6 @@
 package com.zjk.module.common.authorization.client.runner;
 
-import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.base.annotation.EnableRegisterRunner;
 import com.zjk.module.common.authorization.client.api.businesscode.biz.IBusinessCodeRegisterService;
 import com.zjk.module.common.authorization.client.api.businesscode.client.IBusinessCodeClient;
 import com.zjk.module.common.authorization.client.api.businesscode.constant.BusinessCodeLangConstant;

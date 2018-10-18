@@ -1,6 +1,6 @@
 package com.zjk.module.common.authorization.client.runner;
 
-import com.zjk.module.common.authorization.client.annotation.EnableRegisterRunner;
+import com.zjk.module.common.base.annotation.EnableRegisterRunner;
 import com.zjk.module.common.authorization.client.api.serialcode.biz.ISerialCodeRegisterService;
 import com.zjk.module.common.authorization.client.api.serialcode.client.ISerialCodeClient;
 import com.zjk.module.common.authorization.client.api.serialcode.constant.ISerialCode;
