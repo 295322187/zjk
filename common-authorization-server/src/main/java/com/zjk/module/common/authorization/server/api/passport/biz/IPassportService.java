@@ -23,9 +23,10 @@ public interface IPassportService {
 	 * 登录简单版
 	 *
 	 * @param username
+	 * @param plugin
 	 * @return
 	 */
-	User loginSimple(String username);
+	User loginSimple(String username, String plugin);
 
 	/**
 	 * 更新最后登录时间

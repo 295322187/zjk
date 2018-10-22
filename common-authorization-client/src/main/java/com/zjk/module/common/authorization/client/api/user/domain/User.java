@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 public class User {
@@ -31,6 +33,9 @@ public class User {
 
 	@ApiModelProperty(value = "用户参数")
 	private UserSettings settings = new UserSettings();
+
+	@ApiModelProperty(value = "插件")
+	private Map<String, Object> plugin = new HashMap<>();
 
 	public User(String code, String email, String mobile, String password, Date lastLogin, Integer emailVerified, Integer mobileVerified, UserSettings settings) {
 		this.code = code;

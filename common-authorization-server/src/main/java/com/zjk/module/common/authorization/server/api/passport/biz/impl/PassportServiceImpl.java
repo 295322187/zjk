@@ -6,18 +6,22 @@ import com.zjk.module.common.authorization.client.api.passport.domain.Register;
 import com.zjk.module.common.authorization.client.api.user.domain.User;
 import com.zjk.module.common.authorization.client.exception.AuthorizationCode;
 import com.zjk.module.common.authorization.server.api.passport.biz.IPassportCheckService;
+import com.zjk.module.common.authorization.server.api.passport.biz.IPassportPluginService;
 import com.zjk.module.common.authorization.server.api.passport.biz.IPassportService;
 import com.zjk.module.common.authorization.server.api.user.biz.IUserService;
 import com.zjk.module.common.authorization.server.api.verificationcode.biz.IVerificationCodeService;
-import com.zjk.module.common.base.biz.impl.CommonServiceImpl;
+import com.zjk.module.common.base.biz.impl.BusinessServiceImpl;
 import com.zjk.module.common.base.exception.BusinessException;
 import com.zjk.module.common.base.util.CodecUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+
 @Service
-public class PassportServiceImpl extends CommonServiceImpl implements IPassportService {
+public class PassportServiceImpl extends BusinessServiceImpl implements IPassportService {
 
 	@Autowired
 	private IUserService service;
@@ -25,6 +29,13 @@ public class PassportServiceImpl extends CommonServiceImpl implements IPassportS
 	private IPassportCheckService passportCheckService;
 	@Autowired
 	private IVerificationCodeService verificationCodeService;
+
+	private IPassportPluginService getIPassportPluginService(String plugin) {
+		Map<String, IPassportPluginService> map = provider.getBeansOfType(IPassportPluginService.class);
+		return map.entrySet().stream().filter(e -> plugin.equalsIgnoreCase(e.getValue().getPlugin())).findFirst().orElse(null).getValue();
+	}
+
+	/*******************************************************************************************************/
 
 	@Override
 	public User login(String username, String password) {
@@ -41,8 +52,18 @@ public class PassportServiceImpl extends CommonServiceImpl implements IPassportS
 	}
 
 	@Override
-	public User loginSimple(String username) {
-		User po = service.findOneByUsername(username);
+	public User loginSimple(String username, String plugin) {
+		User po;
+		if (StringUtils.isNotBlank(plugin)) {
+			IPassportPluginService passportPluginService = getIPassportPluginService(plugin);
+			if (null != passportPluginService) {
+				po = passportPluginService.login(username);
+			} else {
+				throw new BusinessException(AuthorizationCode.PP0012, new Object[]{plugin});
+			}
+		} else {
+			po = service.findOneByUsername(username);
+		}
 		// 用户名错误
 		if (null == po) {
 			throw new BusinessException(AuthorizationCode.PP0001);

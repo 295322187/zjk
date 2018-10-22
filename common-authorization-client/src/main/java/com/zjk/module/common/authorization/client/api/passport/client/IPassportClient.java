@@ -18,7 +18,7 @@ public interface IPassportClient {
 	JsonContainer<User> login(@RequestParam(value = "username") @NotBlank String username, @RequestParam(value = "password") @NotBlank String password);
 
 	@RequestMapping(value = "/login/simple", method = RequestMethod.GET)
-	JsonContainer<User> loginSimple(@RequestParam(value = "username") @NotBlank String username);
+	JsonContainer<User> loginSimple(@RequestParam(value = "username") @NotBlank String username, @RequestParam(value = "plugin", required = false) String plugin);
 
 	@RequestMapping(value = "/updateLastLogin", method = RequestMethod.PUT)
 	JsonContainer updateLastLogin(@RequestParam(value = "code") @NotBlank String code);

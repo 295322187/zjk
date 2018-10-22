@@ -51,10 +51,24 @@
 				<version>${com.zjk.module.version}</version>
 			</dependency>
 
+			<!-- common authorization server weixin plugin -->
+			<dependency>
+				<groupId>com.zjk.module</groupId>
+				<artifactId>common-authorization-server-weixin-plugin</artifactId>
+				<version>${com.zjk.module.version}</version>
+			</dependency>
+
 			<!-- common authorization client -->
 			<dependency>
 				<groupId>com.zjk.module</groupId>
 				<artifactId>common-authorization-client</artifactId>
+				<version>${com.zjk.module.version}</version>
+			</dependency>
+
+			<!-- common authorization client weixin plugin -->
+			<dependency>
+				<groupId>com.zjk.module</groupId>
+				<artifactId>common-authorization-client-weixin-plugin</artifactId>
 				<version>${com.zjk.module.version}</version>
 			</dependency>
 

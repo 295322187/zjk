@@ -33,8 +33,8 @@ public class PassportController extends BaseController {
 
 	@ApiOperation(value = "登录简单版", notes = "登录简单版")
 	@RequestMapping(value = "/login/simple", method = RequestMethod.GET)
-	public JsonContainer<User> loginSimple(@RequestParam @NotBlank String username) {
-		return setSuccessMessage(service.loginSimple(username));
+	public JsonContainer<User> loginSimple(@RequestParam @NotBlank String username, @RequestParam(required = false) String plugin) {
+		return setSuccessMessage(service.loginSimple(username, plugin));
 	}
 
 	@ApiOperation(value = "更新最后登陆时间", notes = "更新最后登陆时间")
