@@ -75,6 +75,7 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 		po.setCountry(vo.getCountry());
 		po.setHeadimgurl(vo.getHeadimgurl());
 		po.setUnionid(vo.getUnionid());
+		userWeixinService.save(po);
 		user.getPlugin().put(WeixinPluginConstant.WEIXIN_PLUGIN, vo);
 		return user;
 	}
