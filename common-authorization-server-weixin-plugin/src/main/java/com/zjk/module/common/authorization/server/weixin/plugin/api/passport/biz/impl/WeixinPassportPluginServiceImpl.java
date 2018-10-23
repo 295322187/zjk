@@ -6,12 +6,14 @@ import com.zjk.module.common.authorization.client.api.user.domain.User;
 import com.zjk.module.common.authorization.client.exception.AuthorizationCode;
 import com.zjk.module.common.authorization.client.weixin.plugin.api.passport.constant.WeixinPluginConstant;
 import com.zjk.module.common.authorization.client.weixin.plugin.api.passport.domain.UserWeixin;
+import com.zjk.module.common.authorization.client.weixin.plugin.exception.WeixinAuthorizationCode;
 import com.zjk.module.common.authorization.server.api.passport.biz.IPassportPluginService;
 import com.zjk.module.common.authorization.server.api.user.biz.IUserService;
 import com.zjk.module.common.authorization.server.weixin.plugin.base.userweixin.biz.ITCUserWeixinService;
 import com.zjk.module.common.authorization.server.weixin.plugin.base.userweixin.domain.TCUserWeixin;
 import com.zjk.module.common.base.biz.impl.CommonServiceImpl;
 import com.zjk.module.common.base.exception.BusinessException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,6 +62,10 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 		Object object = checkIfNullThrowException(register.getPlugin().get(WeixinPluginConstant.WEIXIN_PLUGIN), new BusinessException(AuthorizationCode.PP0015, new Object[]{WeixinPluginConstant.WEIXIN_PLUGIN}));
 		UserWeixin vo = JSON.parseObject(JSON.toJSONString(object), UserWeixin.class);
 		vo.setCode(po.getCode());
+		// openid不能为空
+		if (StringUtils.isBlank(vo.getOpenid())) {
+			throw new BusinessException(WeixinAuthorizationCode.WX0001);
+		}
 		po.setOpenid(vo.getOpenid());
 		po.setNickname(vo.getNickname());
 		po.setSex(vo.getSex());
