@@ -39,36 +39,32 @@ public class PassportServiceImpl extends BusinessServiceImpl implements IPasspor
 
 	@Override
 	public User login(String username, String password) {
-		User po = service.findOneByUsername(username);
+		User user = service.findOneByUsername(username);
 		// 用户名错误
-		if (null == po) {
+		if (null == user) {
 			throw new BusinessException(AuthorizationCode.PP0001);
 		}
 		// 密码错误
-		if (!CodecUtil.sha1Hex(password).equals(po.getPassword())) {
+		if (!CodecUtil.sha1Hex(password).equals(user.getPassword())) {
 			throw new BusinessException(AuthorizationCode.PP0002);
 		}
-		return po;
+		return user;
 	}
 
 	@Override
 	public User loginSimple(String username, String plugin) {
-		User po;
+		User user;
 		if (StringUtils.isNotBlank(plugin)) {
-			IPassportPluginService passportPluginService = getIPassportPluginService(plugin);
-			if (null != passportPluginService) {
-				po = passportPluginService.login(username);
-			} else {
-				throw new BusinessException(AuthorizationCode.PP0012, new Object[]{plugin});
-			}
+			IPassportPluginService passportPluginService = checkIfNullThrowException(getIPassportPluginService(plugin), new BusinessException(AuthorizationCode.PP0012, new Object[]{plugin}));
+			user = passportPluginService.login(username);
 		} else {
-			po = service.findOneByUsername(username);
+			user = service.findOneByUsername(username);
 		}
 		// 用户名错误
-		if (null == po) {
+		if (null == user) {
 			throw new BusinessException(AuthorizationCode.PP0001);
 		}
-		return po;
+		return user;
 	}
 
 	@Override
@@ -80,30 +76,23 @@ public class PassportServiceImpl extends BusinessServiceImpl implements IPasspor
 
 	@Override
 	@Transactional
-	public User register(Register register) {
-		// 创建用户
-		User user = new User();
-		user.setMobile(register.getMobile());
-		user.setEmail(register.getEmail());
-		// 密码加密
-		if (null != register.getPassword()) {
-			user.setPassword(service.encryptPassword(register.getPassword()));
+	public User register(Register register, String plugin) {
+		User user;
+		// 执行插件
+		if (StringUtils.isNotBlank(plugin)) {
+			IPassportPluginService passportPluginService = checkIfNullThrowException(getIPassportPluginService(plugin), new BusinessException(AuthorizationCode.PP0012, new Object[]{plugin}));
+			user = passportPluginService.register(register);
+		} else {
+			// 没有插件手机号和邮箱不能为空
+			if (StringUtils.isBlank(register.getMobile())) {
+				throw new BusinessException(AuthorizationCode.PP0013);
+			}
+			if (StringUtils.isBlank(register.getEmail())) {
+				throw new BusinessException(AuthorizationCode.PP0014);
+			}
+			// 执行默认
+			user = service.save(register);
 		}
-		user.getSettings().setLang(register.getLang());
-		user.getSettings().setInternational(register.getInternational());
-		// 校验手机
-		passportCheckService.isNotExistMobile(user.getMobile());
-		// 校验邮箱
-		passportCheckService.isNotExistEmail(user.getEmail());
-//		// 如果是境内人士，默认手机号校验成功
-//		if (UserConstant.INTERNATIONAL_0.equals(user.getSettings().getInternational())) {
-//			user.setMobileVerified(UserConstant.VERIFIED_1);
-//		} else {
-//			user.setEmailVerified(UserConstant.VERIFIED_1);
-//		}
-		user.setMobileVerified(register.getMobileVerified());
-		user.setEmailVerified(register.getEmailVerified());
-		service.save(user);
 		return user;
 	}
 
@@ -126,24 +115,24 @@ public class PassportServiceImpl extends BusinessServiceImpl implements IPasspor
 	@Transactional
 	public void forgetPassword(ForgetPassword vo) {
 		verificationCodeService.check(vo.getVerificationCodeCheck());
-		User po = service.findOneByUsername(vo.getUsername());
+		User user = service.findOneByUsername(vo.getUsername());
 		// 用户名错误
-		if (null == po) {
+		if (null == user) {
 			throw new BusinessException(AuthorizationCode.PP0001);
 		}
-		service.updatePassword(po.getCode(), vo.getNewPassword());
+		service.updatePassword(user.getCode(), vo.getNewPassword());
 	}
 
 	@Override
 	@Transactional
 	public void changePassword(ChangePassword vo) {
 		verificationCodeService.check(vo.getVerificationCodeCheck());
-		User po = service.findOneByCode(vo.getCode());
+		User user = service.findOneByCode(vo.getCode());
 		// 密码错误
-		if (!CodecUtil.sha1Hex(vo.getOldPassword()).equals(po.getPassword())) {
+		if (!CodecUtil.sha1Hex(vo.getOldPassword()).equals(user.getPassword())) {
 			throw new BusinessException(AuthorizationCode.PP0002);
 		}
-		service.updatePassword(po.getCode(), vo.getNewPassword());
+		service.updatePassword(user.getCode(), vo.getNewPassword());
 	}
 
 	@Override
@@ -159,7 +148,12 @@ public class PassportServiceImpl extends BusinessServiceImpl implements IPasspor
 
 	@Override
 	@Transactional
-	public void deleteByCode(String code) {
-		service.deleteByCode(code);
+	public void deleteByCode(String code, String plugin) {
+		if (StringUtils.isNotBlank(plugin)) {
+			IPassportPluginService passportPluginService = checkIfNullThrowException(getIPassportPluginService(plugin), new BusinessException(AuthorizationCode.PP0012, new Object[]{plugin}));
+			passportPluginService.deleteByCode(code);
+		} else {
+			service.deleteByCode(code);
+		}
 	}
 }

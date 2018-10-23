@@ -39,11 +39,14 @@ public interface IPassportService {
 
 	/**
 	 * 用户注册
+	 * 没有插件手机号和邮箱校验非空，重复
+	 * 有插件手机号和邮箱校验重复，非空逻辑在业务层判断
 	 *
 	 * @param register
+	 * @param plugin
 	 * @return
 	 */
-	User register(Register register);
+	User register(Register register, String plugin);
 
 	/**
 	 * 更新证件信息
@@ -96,6 +99,7 @@ public interface IPassportService {
 	 * 通过编号删除
 	 *
 	 * @param code
+	 * @param plugin
 	 */
-	void deleteByCode(String code);
+	void deleteByCode(String code, String plugin);
 }

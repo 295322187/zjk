@@ -1,8 +1,13 @@
 package com.zjk.module.common.authorization.client.weixin.plugin.api.passport.domain;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
+@Data
 public class UserWeixin {
+
+	@ApiModelProperty(value = "用户编号")
+	private String code;
 
 	@ApiModelProperty(value = "openid")
 	private String openid;
@@ -31,7 +36,8 @@ public class UserWeixin {
 	@ApiModelProperty(value = "只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。")
 	private String unionid;
 
-	public UserWeixin(String openid, String nickname, Integer sex, String language, String city, String province, String country, String headimgurl, String unionid) {
+	public UserWeixin(String code, String openid, String nickname, Integer sex, String language, String city, String province, String country, String headimgurl, String unionid) {
+		this.code = code;
 		this.openid = openid;
 		this.nickname = nickname;
 		this.sex = sex;

@@ -24,7 +24,7 @@ public interface IPassportClient {
 	JsonContainer updateLastLogin(@RequestParam(value = "code") @NotBlank String code);
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	JsonContainer<User> register(@RequestBody @Validated Register register);
+	JsonContainer<User> register(@RequestBody @Validated Register register, @RequestParam(value = "plugin", required = false) String plugin);
 
 	@RequestMapping(value = "/updateName", method = RequestMethod.PUT)
 	JsonContainer updateName(@RequestParam(value = "code") @NotBlank String code, @RequestParam(value = "name") @NotBlank String name);
@@ -40,6 +40,6 @@ public interface IPassportClient {
 	JsonContainer updateUser(@RequestBody @Validated User vo);
 
 	@RequestMapping(value = "/user/{userCode}", method = RequestMethod.DELETE)
-	JsonContainer deleteByCode(@PathVariable(value = "userCode") @NotBlank String userCode);
+	JsonContainer deleteByCode(@PathVariable(value = "userCode") @NotBlank String userCode, @RequestParam(value = "plugin", required = false) String plugin);
 
 }

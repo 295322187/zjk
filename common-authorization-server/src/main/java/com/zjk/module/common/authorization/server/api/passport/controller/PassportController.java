@@ -44,10 +44,10 @@ public class PassportController extends BaseController {
 		return setSuccessMessage();
 	}
 
-	@ApiOperation(value = "注册", notes = "注册")
+	@ApiOperation(value = "用户注册", notes = "用户注册，没有插件手机号和邮箱校验非空，重复，有插件手机号和邮箱校验重复，非空逻辑在业务层判断")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public JsonContainer<User> register(@RequestBody @Validated Register register) {
-		return setSuccessMessage(service.register(register));
+	public JsonContainer<User> register(@RequestBody @Validated Register register, @RequestParam(required = false) String plugin) {
+		return setSuccessMessage(service.register(register, plugin));
 	}
 
 	@ApiOperation(value = "更新姓名", notes = "更新姓名")
@@ -94,8 +94,8 @@ public class PassportController extends BaseController {
 
 	@ApiOperation(value = "删除用户", notes = "删除用户")
 	@RequestMapping(value = "/user/{userCode}", method = RequestMethod.DELETE)
-	public JsonContainer deleteByCode(@PathVariable @NotBlank String userCode) {
-		service.deleteByCode(userCode);
+	public JsonContainer deleteByCode(@PathVariable @NotBlank String userCode, @RequestParam(required = false) String plugin) {
+		service.deleteByCode(userCode, plugin);
 		return setSuccessMessage();
 	}
 }

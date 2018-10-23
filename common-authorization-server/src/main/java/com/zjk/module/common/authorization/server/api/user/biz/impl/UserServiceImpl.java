@@ -1,8 +1,10 @@
 package com.zjk.module.common.authorization.server.api.user.biz.impl;
 
+import com.zjk.module.common.authorization.client.api.passport.domain.Register;
 import com.zjk.module.common.authorization.client.api.user.constant.UserConstant;
 import com.zjk.module.common.authorization.client.api.user.domain.User;
 import com.zjk.module.common.authorization.client.api.user.domain.UserSettings;
+import com.zjk.module.common.authorization.server.api.passport.biz.IPassportCheckService;
 import com.zjk.module.common.authorization.server.api.user.biz.IUserService;
 import com.zjk.module.common.authorization.server.api.userrole.biz.IUserRoleService;
 import com.zjk.module.common.authorization.server.base.user.biz.ITCUserService;
@@ -11,6 +13,7 @@ import com.zjk.module.common.authorization.server.base.usersettings.biz.ITCUserS
 import com.zjk.module.common.authorization.server.base.usersettings.domain.TCUserSettings;
 import com.zjk.module.common.base.biz.impl.CommonServiceImpl;
 import com.zjk.module.common.base.util.CodecUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +32,36 @@ public class UserServiceImpl extends CommonServiceImpl implements IUserService {
 	private ITCUserSettingsService userSettingsService;
 	@Autowired
 	private IUserRoleService userRoleService;
+	@Autowired
+	private IPassportCheckService passportCheckService;
+
+	@Override
+	@Transactional
+	public User save(Register register) {
+		User user = new User();
+		// 手机
+		if (StringUtils.isNotBlank(register.getMobile())) {
+			// 校验手机
+			passportCheckService.isNotExistMobile(user.getMobile());
+			user.setMobile(register.getMobile());
+			user.setMobileVerified(register.getMobileVerified());
+		}
+		// 邮箱
+		if (StringUtils.isNotBlank(register.getEmail())) {
+			// 校验邮箱
+			passportCheckService.isNotExistEmail(user.getEmail());
+			user.setEmail(register.getEmail());
+			user.setEmailVerified(register.getEmailVerified());
+		}
+		// 密码加密
+		if (null != register.getPassword()) {
+			user.setPassword(encryptPassword(register.getPassword()));
+		}
+		user.getSettings().setLang(register.getLang());
+		user.getSettings().setInternational(register.getInternational());
+		save(user);
+		return user;
+	}
 
 	@Override
 	@Transactional

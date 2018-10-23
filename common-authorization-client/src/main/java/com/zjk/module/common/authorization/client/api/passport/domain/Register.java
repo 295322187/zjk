@@ -4,21 +4,19 @@ import com.zjk.module.common.authorization.client.api.user.constant.UserConstant
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 public class Register {
 
 	@ApiModelProperty(value = "邮箱")
-	@NotBlank
 	private String email;
 
 	@ApiModelProperty(value = "手机")
-	@NotBlank
 	private String mobile;
 
 	@ApiModelProperty(value = "密码")
-	//@NotBlank
 	private String password;
 
 	@ApiModelProperty(value = "语言")
@@ -27,12 +25,14 @@ public class Register {
 	@ApiModelProperty(value = "境内境外")
 	private Integer international = UserConstant.INTERNATIONAL_0;
 
-
 	@ApiModelProperty(value = "邮箱是否验证")
 	private Integer emailVerified = UserConstant.VERIFIED_0;
 
 	@ApiModelProperty(value = "手机是否验证")
 	private Integer mobileVerified = UserConstant.VERIFIED_0;
+
+	@ApiModelProperty(value = "插件")
+	private Map<String, Object> plugin = new HashMap<>();
 
 	public Register() {
 	}

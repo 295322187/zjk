@@ -1,11 +1,14 @@
 package com.zjk.module.common.authorization.server.api.user.biz;
 
 
+import com.zjk.module.common.authorization.client.api.passport.domain.Register;
 import com.zjk.module.common.authorization.client.api.user.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface IUserService {
+
+	User save(Register register);
 
 	void save(User vo);
 
