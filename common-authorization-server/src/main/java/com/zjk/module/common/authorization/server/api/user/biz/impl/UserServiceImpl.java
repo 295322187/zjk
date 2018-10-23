@@ -42,14 +42,14 @@ public class UserServiceImpl extends CommonServiceImpl implements IUserService {
 		// 手机
 		if (StringUtils.isNotBlank(register.getMobile())) {
 			// 校验手机
-			passportCheckService.isNotExistMobile(user.getMobile());
+			passportCheckService.isNotExistMobile(register.getMobile());
 			user.setMobile(register.getMobile());
 			user.setMobileVerified(register.getMobileVerified());
 		}
 		// 邮箱
 		if (StringUtils.isNotBlank(register.getEmail())) {
 			// 校验邮箱
-			passportCheckService.isNotExistEmail(user.getEmail());
+			passportCheckService.isNotExistEmail(register.getEmail());
 			user.setEmail(register.getEmail());
 			user.setEmailVerified(register.getEmailVerified());
 		}
