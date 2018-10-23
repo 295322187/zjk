@@ -1,5 +1,6 @@
 package com.zjk.module.common.authorization.server.weixin.plugin.api.passport.biz.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.zjk.module.common.authorization.client.api.passport.domain.Register;
 import com.zjk.module.common.authorization.client.api.user.domain.User;
 import com.zjk.module.common.authorization.client.exception.AuthorizationCode;
@@ -56,7 +57,8 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 			po = new TCUserWeixin();
 			po.setCode(user.getCode());
 		}
-		UserWeixin vo = checkIfNullThrowException((UserWeixin) register.getPlugin().get(WeixinPluginConstant.WEIXIN_PLUGIN), new BusinessException(AuthorizationCode.PP0015, new Object[]{WeixinPluginConstant.WEIXIN_PLUGIN}));
+		Object object = checkIfNullThrowException(register.getPlugin().get(WeixinPluginConstant.WEIXIN_PLUGIN), new BusinessException(AuthorizationCode.PP0015, new Object[]{WeixinPluginConstant.WEIXIN_PLUGIN}));
+		UserWeixin vo = JSON.parseObject(JSON.toJSONString(object), UserWeixin.class);
 		vo.setCode(po.getCode());
 		po.setOpenid(vo.getOpenid());
 		po.setNickname(vo.getNickname());
