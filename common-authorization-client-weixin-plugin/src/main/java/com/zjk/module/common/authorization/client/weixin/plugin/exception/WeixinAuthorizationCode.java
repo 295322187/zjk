@@ -6,7 +6,8 @@ import com.zjk.module.common.base.exception.IBusinessCode;
 public enum WeixinAuthorizationCode implements IBusinessCode {
 
 	/******************** passport ********************/
-	WX0001("WX0001", "openid不能为空", "openid不能为空");
+	WX0001("WX0001", "openid不能为空", "openid不能为空"),
+	WX0002("WX0002", "openid:{0}已存在", "openid已存在");
 
 	private String clazz;
 

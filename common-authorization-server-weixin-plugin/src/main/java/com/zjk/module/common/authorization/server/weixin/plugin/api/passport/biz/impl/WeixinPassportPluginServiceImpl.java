@@ -52,19 +52,28 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 	@Override
 	@Transactional
 	public User register(Register register) {
-		User user = userService.save(register);
-		// 保存userweixin
-		TCUserWeixin po = userWeixinService.findOneByCode(user.getCode());
-		if (null == po) {
-			po = new TCUserWeixin();
-			po.setCode(user.getCode());
-		}
 		Object object = checkIfNullThrowException(register.getPlugin().get(WeixinPluginConstant.WEIXIN_PLUGIN), new BusinessException(AuthorizationCode.PP0015, new Object[]{WeixinPluginConstant.WEIXIN_PLUGIN}));
 		UserWeixin vo = JSON.parseObject(JSON.toJSONString(object), UserWeixin.class);
-		vo.setCode(po.getCode());
-		// openid不能为空
+		// openid不能为空，不能重复
 		if (StringUtils.isBlank(vo.getOpenid())) {
 			throw new BusinessException(WeixinAuthorizationCode.WX0001);
+		} else {
+			checkIfNotNullThrowException(userWeixinService.findOneByOpenid(vo.getOpenid()), new BusinessException(WeixinAuthorizationCode.WX0002, new Object[]{vo.getOpenid()}));
+		}
+		// 保存user
+		User user = userService.save(register);
+		vo.setCode(user.getCode());
+		// 保存userweixin
+		save(vo);
+		user.getPlugin().put(WeixinPluginConstant.WEIXIN_PLUGIN, vo);
+		return user;
+	}
+
+	public void save(UserWeixin vo) {
+		TCUserWeixin po = userWeixinService.findOneByCode(vo.getCode());
+		if (null == po) {
+			po = new TCUserWeixin();
+			po.setCode(vo.getCode());
 		}
 		po.setOpenid(vo.getOpenid());
 		po.setNickname(vo.getNickname());
@@ -76,8 +85,6 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 		po.setHeadimgurl(vo.getHeadimgurl());
 		po.setUnionid(vo.getUnionid());
 		userWeixinService.save(po);
-		user.getPlugin().put(WeixinPluginConstant.WEIXIN_PLUGIN, vo);
-		return user;
 	}
 
 	@Override
