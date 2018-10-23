@@ -2,6 +2,7 @@ package com.zjk.module.common.authorization.server.weixin.plugin.api.passport.bi
 
 import com.zjk.module.common.authorization.client.api.passport.domain.Register;
 import com.zjk.module.common.authorization.client.api.user.domain.User;
+import com.zjk.module.common.authorization.client.exception.AuthorizationCode;
 import com.zjk.module.common.authorization.client.weixin.plugin.api.passport.constant.WeixinPluginConstant;
 import com.zjk.module.common.authorization.client.weixin.plugin.api.passport.domain.UserWeixin;
 import com.zjk.module.common.authorization.server.api.passport.biz.IPassportPluginService;
@@ -9,6 +10,7 @@ import com.zjk.module.common.authorization.server.api.user.biz.IUserService;
 import com.zjk.module.common.authorization.server.weixin.plugin.base.userweixin.biz.ITCUserWeixinService;
 import com.zjk.module.common.authorization.server.weixin.plugin.base.userweixin.domain.TCUserWeixin;
 import com.zjk.module.common.base.biz.impl.CommonServiceImpl;
+import com.zjk.module.common.base.exception.BusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,7 +56,7 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 			po = new TCUserWeixin();
 			po.setCode(user.getCode());
 		}
-		UserWeixin vo = (UserWeixin) register.getPlugin().get(WeixinPluginConstant.WEIXIN_PLUGIN);
+		UserWeixin vo = checkIfNullThrowException((UserWeixin) register.getPlugin().get(WeixinPluginConstant.WEIXIN_PLUGIN), new BusinessException(AuthorizationCode.PP0015, new Object[]{WeixinPluginConstant.WEIXIN_PLUGIN}));
 		vo.setCode(po.getCode());
 		po.setOpenid(vo.getOpenid());
 		po.setNickname(vo.getNickname());
