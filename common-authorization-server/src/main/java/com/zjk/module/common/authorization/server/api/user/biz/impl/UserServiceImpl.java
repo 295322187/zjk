@@ -65,34 +65,34 @@ public class UserServiceImpl extends CommonServiceImpl implements IUserService {
 
 	@Override
 	@Transactional
-	public void save(User vo) {
-		TCUser po = service.findOneByCode(vo.getCode());
+	public void save(User user) {
+		TCUser po = service.findOneByCode(user.getCode());
 		if (null == po) {
 			po = service.newInstance();
 		}
-		po.setEmail(vo.getEmail());
-		po.setMobile(vo.getMobile());
-		po.setPassword(vo.getPassword());
-		po.setLastLogin(vo.getLastLogin());
-		po.setEmailVerified(vo.getEmailVerified());
-		po.setMobileVerified(vo.getMobileVerified());
+		po.setEmail(user.getEmail());
+		po.setMobile(user.getMobile());
+		po.setPassword(user.getPassword());
+		po.setLastLogin(user.getLastLogin());
+		po.setEmailVerified(user.getEmailVerified());
+		po.setMobileVerified(user.getMobileVerified());
 		service.save(po);
 		// 设置code
-		vo.setCode(po.getCode());
+		user.setCode(po.getCode());
 		// 保存settings
 		TCUserSettings settings = userSettingsService.findOneByCode(po.getCode());
 		if (null == settings) {
 			settings = new TCUserSettings();
 			settings.setCode(po.getCode());
 		}
-		settings.setName(vo.getSettings().getName());
-		settings.setIdCard(vo.getSettings().getIdCard());
-		settings.setIdCardType(vo.getSettings().getIdCardType());
-		settings.setIdCardVerified(vo.getSettings().getIdCardVerified());
-		settings.setIdCardFront(vo.getSettings().getIdCardFront());
-		settings.setIdCardBack(vo.getSettings().getIdCardBack());
-		settings.setLang(vo.getSettings().getLang());
-		settings.setInternational(vo.getSettings().getInternational());
+		settings.setName(user.getSettings().getName());
+		settings.setIdCard(user.getSettings().getIdCard());
+		settings.setIdCardType(user.getSettings().getIdCardType());
+		settings.setIdCardVerified(user.getSettings().getIdCardVerified());
+		settings.setIdCardFront(user.getSettings().getIdCardFront());
+		settings.setIdCardBack(user.getSettings().getIdCardBack());
+		settings.setLang(user.getSettings().getLang());
+		settings.setInternational(user.getSettings().getInternational());
 		userSettingsService.save(settings);
 	}
 

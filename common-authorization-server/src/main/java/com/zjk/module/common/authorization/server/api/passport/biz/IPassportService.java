@@ -91,9 +91,11 @@ public interface IPassportService {
 	/**
 	 * 更新用户信息
 	 *
-	 * @param vo
+	 * @param user
+	 * @param plugin
+	 * @return
 	 */
-	void updateUser(User vo);
+	User updateUser(User user, String plugin);
 
 	/**
 	 * 通过编号删除

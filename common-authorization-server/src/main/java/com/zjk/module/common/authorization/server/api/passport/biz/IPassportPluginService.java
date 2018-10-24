@@ -12,4 +12,6 @@ public interface IPassportPluginService {
 	User register(Register register);
 
 	void deleteByCode(String code);
+
+	void updateUser(User user);
 }

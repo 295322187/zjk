@@ -142,8 +142,14 @@ public class PassportServiceImpl extends BusinessServiceImpl implements IPasspor
 
 	@Override
 	@Transactional
-	public void updateUser(User vo) {
-		service.save(vo);
+	public User updateUser(User user, String plugin) {
+		if (StringUtils.isNotBlank(plugin)) {
+			IPassportPluginService passportPluginService = checkIfNullThrowException(getIPassportPluginService(plugin), new BusinessException(AuthorizationCode.PP0012, new Object[]{plugin}));
+			passportPluginService.updateUser(user);
+		} else {
+			service.save(user);
+		}
+		return user;
 	}
 
 	@Override

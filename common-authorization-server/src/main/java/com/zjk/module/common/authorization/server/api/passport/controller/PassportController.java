@@ -87,9 +87,8 @@ public class PassportController extends BaseController {
 
 	@ApiOperation(value = "更新用户信息", notes = "更新用户信息")
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
-	public JsonContainer updateUser(@RequestBody @Validated User vo) {
-		service.updateUser(vo);
-		return setSuccessMessage();
+	public JsonContainer<User> updateUser(@RequestBody @Validated User user, @RequestParam(required = false) String plugin) {
+		return setSuccessMessage(service.updateUser(user, plugin));
 	}
 
 	@ApiOperation(value = "删除用户", notes = "删除用户")

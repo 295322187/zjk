@@ -93,4 +93,21 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 		userService.deleteByCode(code);
 		userWeixinService.deleteByCode(code);
 	}
+
+	@Override
+	@Transactional
+	public void updateUser(User user) {
+		Object object = checkIfNullThrowException(user.getPlugin().get(WeixinPluginConstant.WEIXIN_PLUGIN), new BusinessException(AuthorizationCode.PP0015, new Object[]{WeixinPluginConstant.WEIXIN_PLUGIN}));
+		UserWeixin vo = JSON.parseObject(JSON.toJSONString(object), UserWeixin.class);
+		// openid不能为空
+		if (StringUtils.isBlank(vo.getOpenid())) {
+			throw new BusinessException(WeixinAuthorizationCode.WX0001);
+		}
+		// 更新user
+		userService.save(user);
+		// 更新userweixin
+		vo.setCode(user.getCode());
+		save(vo);
+		user.getPlugin().put(WeixinPluginConstant.WEIXIN_PLUGIN, vo);
+	}
 }

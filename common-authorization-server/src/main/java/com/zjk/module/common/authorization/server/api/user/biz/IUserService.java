@@ -10,7 +10,7 @@ public interface IUserService {
 
 	User save(Register register);
 
-	void save(User vo);
+	void save(User user);
 
 	String encryptPassword(String password);
 

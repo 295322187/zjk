@@ -37,7 +37,7 @@ public interface IPassportClient {
 	JsonContainer<User> findOneByCode(@PathVariable(value = "userCode") @NotBlank String userCode);
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
-	JsonContainer updateUser(@RequestBody @Validated User vo);
+	JsonContainer updateUser(@RequestBody @Validated User user, @RequestParam(value = "plugin", required = false) String plugin);
 
 	@RequestMapping(value = "/user/{userCode}", method = RequestMethod.DELETE)
 	JsonContainer deleteByCode(@PathVariable(value = "userCode") @NotBlank String userCode, @RequestParam(value = "plugin", required = false) String plugin);
