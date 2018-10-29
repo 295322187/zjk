@@ -14,4 +14,6 @@ public interface IPassportPluginService {
 	void deleteByCode(String code);
 
 	void updateUser(User user);
+
+	User findOneByCode(String userCode);
 }

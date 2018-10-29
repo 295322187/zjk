@@ -136,8 +136,15 @@ public class PassportServiceImpl extends BusinessServiceImpl implements IPasspor
 	}
 
 	@Override
-	public User findOneByCode(String userCode) {
-		return service.findOneByCode(userCode);
+	public User findOneByCode(String userCode, String plugin) {
+		User user;
+		if (StringUtils.isNotBlank(plugin)) {
+			IPassportPluginService passportPluginService = checkIfNullThrowException(getIPassportPluginService(plugin), new BusinessException(AuthorizationCode.PP0012, new Object[]{plugin}));
+			user = passportPluginService.findOneByCode(userCode);
+		} else {
+			user = service.findOneByCode(userCode);
+		}
+		return user;
 	}
 
 	@Override

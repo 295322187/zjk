@@ -84,9 +84,10 @@ public interface IPassportService {
 	 * 通过用户编号查询用户信息
 	 *
 	 * @param userCode
+	 * @param plugin
 	 * @return
 	 */
-	User findOneByCode(String userCode);
+	User findOneByCode(String userCode, String plugin);
 
 	/**
 	 * 更新用户信息

@@ -110,4 +110,11 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 		save(vo);
 		user.getPlugin().put(WeixinPluginConstant.WEIXIN_PLUGIN, vo);
 	}
+
+	@Override
+	public User findOneByCode(String userCode) {
+		User user = userService.findOneByCode(userCode);
+		user.getPlugin().put(WeixinPluginConstant.WEIXIN_PLUGIN, mapOneIfNotNull(userWeixinService.findOneByCode(userCode), e -> convert(e)));
+		return user;
+	}
 }
