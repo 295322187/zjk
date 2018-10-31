@@ -1,5 +1,6 @@
 package com.zjk.module.common.data.specification;
 
+import com.zjk.module.common.data.util.SpecificationUtil;
 import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -8,8 +9,6 @@ import java.util.List;
 
 @Data
 public class SpecificationWrapper<T> implements Specification<T> {
-
-	private static final String PERCENT = "%";
 
 	private List<SpecificationTemplate> templates;
 
@@ -65,7 +64,7 @@ public class SpecificationWrapper<T> implements Specification<T> {
 				predicate = criteriaBuilder.equal(get(template, root), template.getValue());
 				break;
 			case LIKE:
-				predicate = criteriaBuilder.like(get(template, root), PERCENT + template.getValue() + PERCENT);
+				predicate = criteriaBuilder.like(get(template, root), SpecificationUtil.like(template.getOperate(), template.getValue().toString()));
 				break;
 			default:
 				predicate = null;
