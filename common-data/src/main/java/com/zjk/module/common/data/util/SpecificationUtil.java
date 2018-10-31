@@ -1,6 +1,7 @@
 package com.zjk.module.common.data.util;
 
 import com.zjk.module.common.data.specification.SpecificationOperate;
+import org.apache.commons.lang3.StringUtils;
 
 public class SpecificationUtil {
 
@@ -10,7 +11,7 @@ public class SpecificationUtil {
 		String tmp;
 		switch (operate) {
 			case LIKE:
-				tmp = new StringBuffer(PERCENT).append(string).append(PERCENT).toString();
+				tmp = new StringBuffer(PERCENT).append(StringUtils.trim(string)).append(PERCENT).toString();
 				break;
 			default:
 				tmp = null;
