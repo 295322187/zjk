@@ -26,7 +26,7 @@ public class TestController extends BaseController {
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public JsonContainer save() {
 
-		JsonContainer<User> user = client.loginSimple("admin");
+		JsonContainer<User> user = client.loginSimple("admin", null);
 		System.out.println(JSON.toJSONString(user));
 		return setSuccessMessage();
 	}
