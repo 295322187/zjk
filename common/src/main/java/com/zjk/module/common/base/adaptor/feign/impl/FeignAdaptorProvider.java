@@ -5,6 +5,7 @@ import feign.Feign;
 import feign.Target;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.context.annotation.Import;
@@ -25,6 +26,11 @@ public class FeignAdaptorProvider implements FeignAdaptor {
 				.encoder(encoder)
 				.decoder(decoder)
 				.target(Target.EmptyTarget.create(FeignAdaptor.class));
+	}
+
+	@SneakyThrows
+	public ResponseEntity<byte[]> getBytes(String baseUri) {
+		return getBytes(new URI(baseUri));
 	}
 
 	@Override
