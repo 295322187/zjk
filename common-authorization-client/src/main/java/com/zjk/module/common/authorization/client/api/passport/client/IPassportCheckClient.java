@@ -12,6 +12,9 @@ import javax.validation.constraints.NotBlank;
 @RequestMapping("/common/authorization/api/passport/check")
 public interface IPassportCheckClient {
 
+	@RequestMapping(value = "/isNotExist/mobile", method = RequestMethod.GET)
+	JsonContainer isNotExistMobile(@RequestParam(value = "mobile") @NotBlank String mobile);
+
 	@RequestMapping(value = "/exist/email", method = RequestMethod.GET)
 	JsonContainer existEmail(@RequestParam(value = "email") @NotBlank String email);
 
