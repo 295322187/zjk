@@ -1,5 +1,8 @@
 package com.zjk.module.common.base.util;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -13,6 +16,7 @@ public class DifferentDays {
 	 * @param date2
 	 * @return
 	 */
+	@Deprecated
 	public static int differentDays(Date date1, Date date2) {
 		Calendar cal1 = Calendar.getInstance();
 		cal1.setTime(date1);
@@ -59,6 +63,25 @@ public class DifferentDays {
 		calendar.setTime(beginDate);
 		calendar.add(Calendar.DATE, days);
 		return calendar.getTime();
+	}
+
+	/**
+	 * 计算date2比date1多的天数
+	 *
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static long differentLocalDate(Date date1, Date date2) {
+		Instant instant1 = date1.toInstant();
+		Instant instant2 = date2.toInstant();
+
+		ZoneId zoneId = ZoneId.systemDefault();
+
+		LocalDate begin = instant1.atZone(zoneId).toLocalDate();
+		LocalDate end = instant2.atZone(zoneId).toLocalDate();
+
+		return begin.toEpochDay() - end.toEpochDay();
 	}
 
 }
