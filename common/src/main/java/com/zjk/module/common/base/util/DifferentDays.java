@@ -81,7 +81,7 @@ public class DifferentDays {
 		LocalDate begin = instant1.atZone(zoneId).toLocalDate();
 		LocalDate end = instant2.atZone(zoneId).toLocalDate();
 
-		return begin.toEpochDay() - end.toEpochDay();
+		return end.toEpochDay() - begin.toEpochDay();
 	}
 
 }
