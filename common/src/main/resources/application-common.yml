@@ -3,7 +3,7 @@ spring:
     time-zone: GMT+8
 
 logging:
-  file: ${common.base.paht:/home/microservice}/log/${spring.application.name}/${spring.application.name}.log
+  file: ${common.base.path:/home/microservice}/log/${spring.application.name}/${spring.application.name}.log
 
 eureka:
   instance:
