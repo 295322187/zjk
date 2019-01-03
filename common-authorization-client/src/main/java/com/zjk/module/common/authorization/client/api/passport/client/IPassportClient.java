@@ -36,6 +36,9 @@ public interface IPassportClient {
 	@RequestMapping(value = "/user/{userCode}", method = RequestMethod.GET)
 	JsonContainer<User> findOneByCode(@PathVariable(value = "userCode") @NotBlank String userCode, @RequestParam(value = "plugin", required = false) String plugin);
 
+	@RequestMapping(value = "/user/username/{username}", method = RequestMethod.GET)
+	JsonContainer<User> findOneByUsername(@PathVariable(value = "username") @NotBlank String username, @RequestParam(value = "plugin", required = false) String plugin);
+
 	@RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
 	JsonContainer<User> updateUser(@RequestBody @Validated User user, @RequestParam(value = "plugin", required = false) String plugin);
 

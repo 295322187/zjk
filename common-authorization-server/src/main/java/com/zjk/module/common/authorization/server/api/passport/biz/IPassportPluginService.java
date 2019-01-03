@@ -16,4 +16,6 @@ public interface IPassportPluginService {
 	void updateUser(User user);
 
 	User findOneByCode(String userCode);
+
+	User findOneByUsername(String username);
 }

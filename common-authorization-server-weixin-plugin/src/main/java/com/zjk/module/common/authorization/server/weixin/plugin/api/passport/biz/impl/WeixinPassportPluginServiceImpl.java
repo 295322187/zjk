@@ -119,4 +119,13 @@ public class WeixinPassportPluginServiceImpl extends CommonServiceImpl implement
 		}
 		return user;
 	}
+
+	@Override
+	public User findOneByUsername(String username) {
+		User user = userService.findOneByUsername(username);
+		if (null != user) {
+			user.getPlugin().put(WeixinPluginConstant.WEIXIN_PLUGIN, mapOneIfNotNull(userWeixinService.findOneByCode(user.getCode()), e -> convert(e)));
+		}
+		return user;
+	}
 }

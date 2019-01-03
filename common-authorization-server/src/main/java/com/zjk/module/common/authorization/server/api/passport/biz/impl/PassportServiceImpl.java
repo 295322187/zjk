@@ -148,6 +148,18 @@ public class PassportServiceImpl extends BusinessServiceImpl implements IPasspor
 	}
 
 	@Override
+	public User findOneByUsername(String username, String plugin) {
+		User user;
+		if (StringUtils.isNotBlank(plugin)) {
+			IPassportPluginService passportPluginService = checkIfNullThrowException(getIPassportPluginService(plugin), new BusinessException(AuthorizationCode.PP0012, new Object[]{plugin}));
+			user = passportPluginService.findOneByUsername(username);
+		} else {
+			user = service.findOneByUsername(username);
+		}
+		return user;
+	}
+
+	@Override
 	@Transactional
 	public User updateUser(User user, String plugin) {
 		if (StringUtils.isNotBlank(plugin)) {

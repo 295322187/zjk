@@ -79,10 +79,16 @@ public class PassportController extends BaseController {
 		return setSuccessMessage();
 	}
 
-	@ApiOperation(value = "用户信息", notes = "用户信息")
+	@ApiOperation(value = "根据用户编号查询用户信息", notes = "根据用户编号查询用户信息")
 	@RequestMapping(value = "/user/{userCode}", method = RequestMethod.GET)
 	public JsonContainer<User> findOneByCode(@PathVariable @NotBlank String userCode, @RequestParam(required = false) String plugin) {
 		return setSuccessMessage(service.findOneByCode(userCode, plugin));
+	}
+
+	@ApiOperation(value = "根据用户名查询用户信息", notes = "根据用户名查询用户信息")
+	@RequestMapping(value = "/user/username/{username}", method = RequestMethod.GET)
+	public JsonContainer<User> findOneByUsername(@PathVariable @NotBlank String username, @RequestParam(required = false) String plugin) {
+		return setSuccessMessage(service.findOneByUsername(username, plugin));
 	}
 
 	@ApiOperation(value = "更新用户信息", notes = "更新用户信息")
