@@ -107,6 +107,7 @@ public class PassportServiceImpl extends BusinessServiceImpl implements IPasspor
 	@Transactional
 	public void updateNameAndProfession(String code, String name, String profession) {
 		passportCheckService.existCode(code);
+		service.updateNameAndProfession(code, name, profession);
 	}
 
 	@Override
