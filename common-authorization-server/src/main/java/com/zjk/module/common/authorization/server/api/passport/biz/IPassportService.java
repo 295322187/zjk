@@ -49,12 +49,21 @@ public interface IPassportService {
 	User register(Register register, String plugin);
 
 	/**
-	 * 更新证件信息
+	 * 更新姓名
 	 *
 	 * @param code
 	 * @param name
 	 */
 	void updateName(String code, String name);
+
+	/**
+	 * 更新姓名和职业
+	 *
+	 * @param code
+	 * @param name
+	 * @param profession
+	 */
+	void updateNameAndProfession(String code, String name, String profession);
 
 	/**
 	 * 更新证件信息

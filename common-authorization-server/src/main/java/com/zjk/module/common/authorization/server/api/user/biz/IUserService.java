@@ -24,6 +24,8 @@ public interface IUserService {
 
 	void updateName(String code, String name);
 
+	void updateNameAndProfession(String code, String name, String profession);
+
 	void updateNameAndIdCard(String code, String name, String idCard, Integer idCardType);
 
 	void updatePassword(String code, String password);

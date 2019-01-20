@@ -32,4 +32,5 @@ public class TCUserSettings extends DataEntity {
 
 	private Integer international;
 
+	private String profession;
 }
