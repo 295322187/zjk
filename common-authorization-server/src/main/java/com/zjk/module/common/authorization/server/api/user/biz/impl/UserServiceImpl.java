@@ -93,6 +93,7 @@ public class UserServiceImpl extends CommonServiceImpl implements IUserService {
 		settings.setIdCardBack(user.getSettings().getIdCardBack());
 		settings.setLang(user.getSettings().getLang());
 		settings.setInternational(user.getSettings().getInternational());
+		settings.setProfession(user.getSettings().getProfession());
 		userSettingsService.save(settings);
 	}
 
@@ -113,7 +114,7 @@ public class UserServiceImpl extends CommonServiceImpl implements IUserService {
 	 */
 	private User convert(TCUser e) {
 		return new User(e.getCode(), e.getEmail(), e.getMobile(), e.getPassword(), e.getLastLogin(), e.getEmailVerified(), e.getMobileVerified(),
-				mapOneIfNotNull(userSettingsService.findOneByCode(e.getCode()), s -> new UserSettings(s.getName(), s.getIdCard(), s.getIdCardType(), s.getIdCardVerified(), s.getIdCardFront(), s.getIdCardBack(), s.getLang(), s.getInternational())));
+				mapOneIfNotNull(userSettingsService.findOneByCode(e.getCode()), s -> new UserSettings(s.getName(), s.getIdCard(), s.getIdCardType(), s.getIdCardVerified(), s.getIdCardFront(), s.getIdCardBack(), s.getLang(), s.getInternational(), s.getProfession())));
 	}
 
 	@Override

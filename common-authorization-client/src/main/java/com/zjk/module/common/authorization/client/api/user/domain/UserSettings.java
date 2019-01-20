@@ -30,7 +30,10 @@ public class UserSettings {
 	@ApiModelProperty(value = "境内境外")
 	private Integer international;
 
-	public UserSettings(String name, String idCard, Integer idCardType, Integer idCardVerified, String idCardFront, String idCardBack, Integer lang, Integer international) {
+	@ApiModelProperty(value = "职业")
+	private String profession;
+
+	public UserSettings(String name, String idCard, Integer idCardType, Integer idCardVerified, String idCardFront, String idCardBack, Integer lang, Integer international, String profession) {
 		this.name = name;
 		this.idCard = idCard;
 		this.idCardType = idCardType;
@@ -39,6 +42,7 @@ public class UserSettings {
 		this.idCardBack = idCardBack;
 		this.lang = lang;
 		this.international = international;
+		this.profession = profession;
 	}
 
 	public UserSettings() {
