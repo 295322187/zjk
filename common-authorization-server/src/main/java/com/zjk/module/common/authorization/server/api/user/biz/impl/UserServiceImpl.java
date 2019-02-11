@@ -102,6 +102,7 @@ public class UserServiceImpl extends CommonServiceImpl implements IUserService {
 	 *
 	 * @param password
 	 */
+	@Override
 	public String encryptPassword(String password) {
 		return CodecUtil.sha1Hex(password);
 	}

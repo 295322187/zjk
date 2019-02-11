@@ -36,6 +36,6 @@ public class MethodProvider {
 	 * @return
 	 */
 	public String getPath(String applicationName, String pattern) {
-		return new StringBuffer(MATCHER.DEFAULT_PATH_SEPARATOR).append(applicationName).append(pattern).toString();
+		return new StringBuffer(AntPathMatcher.DEFAULT_PATH_SEPARATOR).append(applicationName).append(pattern).toString();
 	}
 }
