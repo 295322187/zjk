@@ -84,7 +84,7 @@ public class RedisServiceImpl implements IRedisService {
 	@Override
 	public boolean hasExpire(String key) {
 		Long expire = getExpire(key);
-		if (isExpired == expire || noExpire == expire) {
+		if (isExpired.equals(expire) || noExpire.equals(expire)) {
 			return false;
 		}
 		return true;
