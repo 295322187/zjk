@@ -38,7 +38,9 @@ public class CommonServiceImpl {
 	 * @return
 	 */
 	protected <R, S> List<R> map(List<S> result, Function<? super S, ? extends R> mapper) {
-		if (null == result) return null;
+		if (null == result) {
+			return null;
+		}
 		return result.stream().map(mapper).collect(Collectors.toList());
 	}
 
@@ -151,8 +153,12 @@ public class CommonServiceImpl {
 	 */
 	@SneakyThrows
 	protected <M extends BaseEntity, N> List<M> mergeAndSetDeleteFlag(List<M> pos, List<N> vos, IConvertService<M, N> service, Class<M> clazz) {
-		if (null == pos) pos = new ArrayList<>();
-		if (null == vos) vos = new ArrayList<>();
+		if (null == pos) {
+			pos = new ArrayList<>();
+		}
+		if (null == vos) {
+			vos = new ArrayList<>();
+		}
 		Integer posSize = pos.size();
 		Integer vosSize = vos.size();
 		List<M> result = new ArrayList<>();
