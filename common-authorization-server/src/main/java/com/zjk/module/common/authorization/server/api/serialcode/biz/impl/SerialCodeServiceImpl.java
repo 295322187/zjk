@@ -34,7 +34,6 @@ public class SerialCodeServiceImpl implements ISerialCodeService, ISerialCodeReg
 	private static final String SAVE = "save";
 
 	/******************** 下一编号 ********************/
-	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMdd");
 	private static DecimalFormat decimalFormat = new DecimalFormat("000000");
 
 	@Override
@@ -43,7 +42,7 @@ public class SerialCodeServiceImpl implements ISerialCodeService, ISerialCodeReg
 	}
 
 	private String nextBizId(String serialGroup) {
-		String date = simpleDateFormat.format(new Date());
+		String date = new SimpleDateFormat("yyMMdd").format(new Date());
 		Integer serialNum = (Integer) redisService.get(RedisConstant.getKey(SerialCode.class, serialGroup, date));
 		if (null == serialNum) {
 			// 必须注册的serialGroup才允许生成序列号
