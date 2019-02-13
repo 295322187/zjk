@@ -1,13 +1,15 @@
 package com.zjk.module.sample;
 
 import com.zjk.module.common.authorization.client.annotation.EnableCommonAuthorizationClientConfiguration;
+import com.zjk.module.common.base.annotation.EnableCommonBaseConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableCommonAuthorizationClientConfiguration
+//@EnableCommonAuthorizationClientConfiguration
+@EnableCommonBaseConfiguration
 public class SampleClientApplication {
 
 	public static void main(String[] args) {
