@@ -36,12 +36,15 @@ public class TestController extends BaseController {
 	@ApiOperation(value = "asyncTest", notes = "asyncTest")
 	@RequestMapping(value = "/asyncTest/{test}", method = RequestMethod.GET)
 	public JsonContainer asyncTest(@PathVariable String test) {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				testService.threadTest(test + Math.random());
-			}
-		}).run();
+		for (int i = 0; i < 5; i++) {
+			String s = test + i;
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					testService.threadTest(s);
+				}
+			}).run();
+		}
 		return setSuccessMessage();
 	}
 
